@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Daniel's interactive planner and cultural atlas for a journey through China.">
+  <title>Destino China — Travel Planner & Cultural Atlas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIINfQ3ynhHdqv8I3ZtSLAK6p8K7pV4I6eE=" crossorigin="">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Destino China home">
+      <span class="brand-mark" aria-hidden="true">中</span>
+      <span>Destino China</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="#route">Route</a>
+      <a href="#planner">Planner</a>
+      <a href="#atlas">Atlas</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="intro" aria-labelledby="intro-title">
+      <div class="intro-copy">
+        <p class="eyebrow">A personal journey in progress</p>
+        <h1 id="intro-title">From imperial capitals to the coast.</h1>
+        <p class="lede">A practical planner and living cultural atlas for travelling through China—built to collect routes, questions, histories and memories in one place.</p>
+        <div class="trip-stats" aria-label="Route summary">
+          <div><strong id="city-count">5</strong><span>stops</span></div>
+          <div><strong>1,300+</strong><span>kilometres</span></div>
+          <div><strong>京 → 沪</strong><span>Beijing to Shanghai</span></div>
+        </div>
+      </div>
+      <figure class="intro-image">
+        <img src="https://images.unsplash.com/photo-1601037913103-cc092c29541d?auto=format&fit=crop&w=1600&q=82" alt="The Hall of Prayer for Good Harvests at the Temple of Heaven in Beijing">
+        <figcaption>Temple of Heaven, Beijing · Photo by Tommao Wang via Unsplash</figcaption>
+      </figure>
+    </section>
+
+    <section class="route-section" id="route" aria-labelledby="route-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">The route</p><h2 id="route-title">Follow the Grand Canal south</h2></div>
+        <p>Select a stop to bring its story into focus.</p>
+      </div>
+      <div class="map-layout">
+        <div id="map" aria-label="Interactive map showing the route from Beijing to Shanghai"></div>
+        <div class="route-panel">
+          <p class="route-number" id="route-number">01 / 05</p>
+          <p class="place-chinese" id="place-chinese">北京</p>
+          <h3 id="place-name">Beijing</h3>
+          <p id="place-theme">Power, ritual and the monumental capital</p>
+          <div class="place-meta"><span id="place-days">Suggested: 4 days</span><span id="place-region">Northern China</span></div>
+          <button class="text-button" id="next-stop" type="button">Next stop <span aria-hidden="true">→</span></button>
+        </div>
+      </div>
+      <ol class="route-tabs" id="route-tabs" aria-label="Route stops"></ol>
+    </section>
+
+    <section class="planner-section" id="planner" aria-labelledby="planner-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">Trip desk</p><h2 id="planner-title">Plan the practical details</h2></div>
+        <p>The checklist is saved automatically on this device.</p>
+      </div>
+      <div class="planner-grid">
+        <article class="panel checklist-panel">
+          <div class="panel-title"><h3>Before departure</h3><span id="check-progress">0 / 6</span></div>
+          <div class="progress-track" aria-hidden="true"><span id="progress-bar"></span></div>
+          <div id="checklist"></div>
+          <form id="add-task-form" class="add-task-form">
+            <label class="sr-only" for="new-task">Add a preparation task</label>
+            <input id="new-task" maxlength="80" placeholder="Add another task…" autocomplete="off">
+            <button type="submit" aria-label="Add task">+</button>
+          </form>
+        </article>
+
+        <article class="panel budget-panel">
+          <div class="panel-title"><h3>Budget sketch</h3><span>EUR / CNY</span></div>
+          <div class="budget-fields">
+            <label>Transport<input data-budget="transport" type="number" min="0" value="650"><span>€</span></label>
+            <label>Accommodation<input data-budget="accommodation" type="number" min="0" value="720"><span>€</span></label>
+            <label>Food<input data-budget="food" type="number" min="0" value="350"><span>€</span></label>
+            <label>Culture & extras<input data-budget="culture" type="number" min="0" value="280"><span>€</span></label>
+          </div>
+          <label class="rate-field">Planning exchange rate <input id="exchange-rate" type="number" min="0" step="0.01" value="7.80"> CNY per EUR</label>
+          <div class="budget-total"><span>Estimated total</span><strong id="total-eur">€2,000</strong><small id="total-cny">¥15,600</small></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="atlas-section" id="atlas" aria-labelledby="atlas-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">Cultural atlas</p><h2 id="atlas-title">Read the journey in layers</h2></div>
+        <p>Places are more memorable when they are connected to an idea.</p>
+      </div>
+      <div class="atlas-grid" id="atlas-grid"></div>
+      <article class="featured-essay">
+        <div><p class="eyebrow">Featured essay · Beijing 2008</p><h3>An unsurpassed night of glory</h3></div>
+        <p>A personal reflection on the ambition, historical symbolism and international image projected through Zhang Yimou’s Olympic opening ceremony.</p>
+        <a href="openingceremony.html">Read the essay <span aria-hidden="true">↗</span></a>
+      </article>
+    </section>
+  </main>
+
+  <footer><span>Destino China · A living archive</span><span>Built with HTML, CSS, JavaScript & Leaflet</span></footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="assets/app.js" type="module"></script>
+</body>
+</html>
